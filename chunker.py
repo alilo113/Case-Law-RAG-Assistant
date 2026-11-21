@@ -1,7 +1,7 @@
 from pathlib import Path
 
+from langchain_core.documents import Document
 from langchain_text_splitters import RecursiveCharacterTextSplitter
-
 import pdfplumber
 
 def extract_pdf_texts() -> list[str]:
@@ -22,10 +22,8 @@ def extract_pdf_texts() -> list[str]:
     return extracted_texts
 
 
-def chunk_pdf_texts() -> list[str]:
+def chunk_pdf_texts() -> list[Document]:
     """Split extracted PDF texts into overlapping chunks."""
     pdf_texts = extract_pdf_texts()
     splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=200)
     return splitter.create_documents(pdf_texts)
-
-print(chunk_pdf_texts())
