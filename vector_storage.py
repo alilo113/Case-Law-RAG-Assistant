@@ -35,5 +35,3 @@ def initialize_and_upsert_vector_store() -> UpsertRecordsResponse:
     ]
     index = pinecone.Index(index_name)
     return index.upsert_records(namespace="case-law", records=records)
-
-print(initialize_and_upsert_vector_store())
